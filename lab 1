@@ -1,0 +1,78 @@
+import java.util.Scanner;
+public class Calculator {
+    public static void main(String [] args){
+        System.out.println("  ***PROGRAM FOR CALCULATOR***  ");
+        int num1, num2;
+        char operator;
+        Scanner in=new Scanner (System.in);
+        System.out.println("Enter number 1 for performing operations");
+        num1=in.nextInt();
+        System.out.println("Enter number 2 for performing operations");
+        num2=in.nextInt();
+        System.out.println("Enter operator for performing operations \n + , - , * , / " );
+        operator=in.next().charAt(0);
+
+
+        switch(operator){
+            case '+':
+            System.out.println("Addition is "+ (num1+num2));
+            break;
+            case '-':
+            System.out.println("Subtraction is "+ (num1-num2));
+            break;
+            case '*':
+            System.out.println("multiplication is "+ (num1*num2));
+            break;
+            case '/':
+            if (num2==0){
+                System.out.println("cannot divide by the number which is less than 0");
+                break;}
+            else {
+
+                System.out.println("Division is "+ (num1/num2));
+                break;
+
+            }
+
+            
+            
+            case '%':
+            if (num2==0){
+                System.out.println("cannot divide by the number which is less than 0");
+                break;}
+            else
+            {
+            
+
+                System.out.println("modulus is "+ (num1%num2));
+                break;}
+
+            
+            default:
+            System.out.println("invalid choice");
+
+
+
+        }
+        in.close();
+
+
+
+
+
+
+    }
+
+
+Output:-
+***PROGRAM FOR CALCULATOR***  
+Enter number 1 for performing operations
+45
+Enter number 2 for performing operations
+18
+Enter operator for performing operations 
+ + , - , * , /
+*
+multiplication is 810
+
+}
