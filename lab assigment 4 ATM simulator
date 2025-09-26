@@ -1,0 +1,124 @@
+import java.util.Scanner;
+
+public class ATMsimulator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double balance = 1000; // initial balance
+        int choice;
+
+        do {
+            System.out.println("\n--- ATM Menu ---");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit Money");
+            System.out.println("3. Withdraw Money");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            try {
+                switch (choice) {
+                    case 1:
+                        System.out.println("Your Current Balance: ₹" + balance);
+                        break;
+
+                    case 2:
+                        System.out.print("Enter deposit amount: ");
+                        double deposit = sc.nextDouble();
+                        if (deposit <= 0) {
+                            throw new IllegalArgumentException("Deposit must be positive.");
+                        }
+                        balance += deposit;
+                        System.out.println("Successfully Deposited ₹" + deposit);
+                        break;
+
+                    case 3:
+                        System.out.print("Enter withdrawal amount: ");
+                        double withdraw = sc.nextDouble();
+                        if (withdraw <= 0) {
+                            throw new IllegalArgumentException("Withdrawal must be positive.");
+                        }
+                        if (withdraw > balance) {
+                            throw new ArithmeticException("Insufficient funds! Balance: ₹" + balance);
+                        }
+                        balance -= withdraw;
+                        System.out.println("Successfully Withdrawn ₹" + withdraw);
+                        break;
+
+                    case 4:
+                        System.out.println("Thank you for using the ATM!");
+                        break;
+
+                    default:
+                        throw new IllegalArgumentException("Invalid menu option. Please choose 1–4.");
+                }
+            } 
+            catch (ArithmeticException e) {
+                System.out.println("Transaction Failed: You tried to withdraw more than your balance.");
+                System.out.println("Details: " + e.getMessage());
+            } 
+            catch (IllegalArgumentException e) {
+                System.out.println("Invalid Operation: You entered an invalid amount or menu choice.");
+                System.out.println("Details: " + e.getMessage());
+            } 
+            finally {
+                System.out.println("Transaction complete.\n");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
+
+
+Output:-
+--- ATM Menu ---
+1. Check Balance
+2. Deposit Money
+3. Withdraw Money
+4. Exit
+Enter choice: 1
+Your Current Balance: ₹1000.0
+Transaction complete.
+
+
+--- ATM Menu ---
+1. Check Balance
+2. Deposit Money
+3. Withdraw Money
+4. Exit
+Enter choice: 2
+Enter deposit amount: 500
+Successfully Deposited ₹500.0
+Transaction complete.
+
+
+--- ATM Menu ---
+1. Check Balance
+2. Deposit Money
+3. Withdraw Money
+4. Exit
+Enter choice: 3
+Enter withdrawal amount: 1500
+Successfully Withdrawn ₹1500.0
+Transaction complete.
+
+
+--- ATM Menu ---
+1. Check Balance
+2. Deposit Money
+3. Withdraw Money
+4. Exit
+Enter choice: 1
+Your Current Balance: ₹0.0
+Transaction complete.
+
+
+--- ATM Menu ---
+1. Check Balance
+2. Deposit Money
+3. Withdraw Money
+4. Exit
+Enter choice: 4
+Thank you for using the ATM!
+Transaction complete.
