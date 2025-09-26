@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class Hotelb1ooking {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Let's say hotel has 3 floors and 5 rooms on each floor
+        int floors = 3;
+        int roomsPerFloor = 5;
+
+        // 2D array: 0 = available, 1 = booked
+        int[][] hotel = new int[floors][roomsPerFloor];
+
+        int choice;
+        do {
+            System.out.println("\n--- Hotel Room Booking System ---");
+            System.out.println("1. View Rooms");
+            System.out.println("2. Book a Room");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Display room availability
+                    System.out.println("\nRoom Status (0 = Available, 1 = Booked):");
+                    for (int i = 0; i < floors; i++) {
+                        System.out.print("Floor " + (i + 1) + ": ");
+                        for (int j = 0; j < roomsPerFloor; j++) {
+                            System.out.print(hotel[i][j] + " ");
+                        }
+                        System.out.println();
+                    }
+                    break;
+
+                case 2:
+                    // Book a room
+                    System.out.print("Enter floor number (1-" + floors + "): ");
+                    int floor = sc.nextInt() - 1;
+                    System.out.print("Enter room number (1-" + roomsPerFloor + "): ");
+                    int room = sc.nextInt() - 1;
+
+                    if (floor >= 0 && floor < floors && room >= 0 && room < roomsPerFloor) {
+                        if (hotel[floor][room] == 0) {
+                            hotel[floor][room] = 1;
+                            System.out.println("Room booked successfully!");
+                        } else {
+                            System.out.println("Sorry, that room is already booked.");
+                        }
+                    } else {
+                        System.out.println("Invalid floor or room number.");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Exiting system. Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 3);
+
+        sc.close();
+    }
+}
+
+
+Output:-
+--- Hotel Room Booking System ---
+1. View Rooms
+2. Book a Room
+3. Exit
+Enter your choice: 1
+
+Room Status (0 = Available, 1 = Booked):
+Floor 1: 0 0 0 0 0
+Floor 2: 0 0 0 0 0
+Floor 3: 0 0 0 0 0
+
+--- Hotel Room Booking System ---
+1. View Rooms
+2. Book a Room
+3. Exit
+Enter your choice: 2
+Enter floor number (1-3): 3
+Enter room number (1-5): 1
+Room booked successfully!
+
+--- Hotel Room Booking System ---
+1. View Rooms
+2. Book a Room
+3. Exit
+Enter your choice: 3
+Exiting system. Thank you!
